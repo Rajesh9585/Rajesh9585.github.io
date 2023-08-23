@@ -1,81 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Complete Responsive Personal Portfolio Website HTML CSS Javascript | Codehal</title>
+    <title>Classroom Availability Checker</title>
+    <script>
+        function checkAvailability() {
+            var classroom = document.getElementById("classroom").value;
+            var day = document.getElementById("day").value;
+            var period = parseInt(document.getElementById("period").value);
 
-    <link rel="stylesheet" href="css/style.css">
+            var classroom_schedule = {
+                "701": {
+                    "Monday": [1, 2, 3,6,5],
+                    "Tuesday": [2,4,5, 3],
+                    "Wednesday": [7,1,6, 3],
+                    "Thursday": [1, 5,8,3],
+                    "Friday": [2,4 ,7,3,6],
+                    
+                    // Add more days and periods as needed
+                },
+                "702": {
+                    "Monday": [4, 5,8 ,7,6],
+                    "Tuesday": [6,3,4,7],
+                    "Wednesday": [1,7 ,4,3],
+                    "Thursday": [2,1,4 ,8],
+                    "Friday": [5, 1,3,7,8],
+                },
+                "703": {
+                    
+                    "Monday": [3, 2, 6,7],
+                    "Tuesday": [1, 3,8,6,2],
+                    "Wednesday": [5,3,4, 2],
+                    "Thursday": [2,8 ,5,3],
+                    "Friday": [2,7,1,6, 8],
+                },
+                "704": {
+                    "Monday": [1, 5,7,8, 3],
+                    "Tuesday": [4, 1,7,8,6],
+                    "Wednesday": [2, 3,6,4,8],
+                    "Thursday": [5, 3,1,8,6],
+                    "Friday": [2, 3,7,4,1,5],                },
+                "705": {
+                    "Monday": [1, 4, 3,7,5],
+                    "Tuesday": [2, 7,3,1,5],
+                    "Wednesday": [2,1,5, 3],
+                    "Thursday": [2,1,4 ,3],
+                    "Friday": [2, 6,1,3],
+                },
+                // Add more classrooms as needed
+            };
 
-    <!-- Boxicons -->
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+            if (classroom in classroom_schedule && day in classroom_schedule[classroom]) {
+                var occupied_periods = classroom_schedule[classroom][day];
+                if (!occupied_periods.includes(period)) {
+                    document.getElementById("result").textContent = "The classroom is free during the selected period.";
+                } else {
+                    var alternative_classroom = null;
+                    for (var cls in classroom_schedule) {
+                        if (classroom_schedule[cls][day] && !classroom_schedule[cls][day].includes(period)) {
+                            alternative_classroom = cls;
+                            break;
+                        }
+                    }
+                    if (alternative_classroom) {
+                        document.getElementById("result").textContent = "The classroom is occupied. You can use classroom " + alternative_classroom + " as an alternative.";
+                    } else {
+                        document.getElementById("result").textContent = "The classroom is occupied during the selected period.";
+                    }
+                }
+            } else {
+                document.getElementById("result").textContent = "Classroom information not found.";
+            }
+        }
+    </script>
 </head>
-
 <body>
-
-    <!-- Header design -->
-    <header class="header">
-        <a href="#" class="logo">Rajesh</a>
-        <div class="bx bx-menu" id="menu-icon"></div>
-        <nav class="navbar">
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#education">Education</a>
-            <a href="#contact">Contact</a>
-            <a href="#"><i class='bx bx-search-alt-2'></i>
-			<input id="input" type="search"aria-controls="matches" placeholder="Search....">
-</a>
-        </nav>
-    </header>
-
-    <!-- Home section design -->
-    <section class="home" id="home">
-        <div class="home-content">
-            <h1>Hi, I'm <span>Rajesh</span></h1>
-            <div class="text-animate">
-                <h3>Frontend Developer</h3>
-            </div>
-            <p>Honestly, I possess all the skills and experience that you’re looking for this position and I’m pretty confident that I am the best candidate for it. Being a fast learner, I quickly picked up business knowledge related to my project. On the other hand, I am a self-motivated person and try to exceed my superior’s expectations with high-quality work. It's not just my background in the past projects, but also my people skills, which will be applicable in this position. Lastly, I would like to add that I work well both as an individual contributor and also as a team member. Collectively, all these skills put together make me a complete package for this job.</p>
-            <div class="btn-box">
-                <a href="#" class="btn">Hire me!</a>
-                <a href="#" class="btn">Let's talk</a>
-            </div>
-        </div>
-        <div class="home-sci">
-            <a href="#"><i class='bx bxl-facebook'></i></a>
-            <a href="#"><i class='bx bxl-instagram'></i></a>
-            <a href="#"><i class='bx bxl-linkedin'></i></a>
-        </div>
-    </section>
-
-    <!-- About section design -->
-    <div class="about">
-    <div class="about-img"><image src= "https://scontent.fmaa2-4.fna.fbcdn.net/v/t39.30808-6/328700036_693181209161730_958324586403311375_n.jpg?stp=cp0_dst-jpg_e15_p403x403_q65&_nc_cat=109&ccb=1-7&_nc_sid=110474&_nc_ohc=x1y0AKqm18IAX_fmwkQ&_nc_ht=scontent.fmaa2-4.fna&oh=00_AfCE61_rUHHux8Tnba93-PWZwXu65K236OkyY1SHQjnsFA&oe=64C91E55">
-      <div class="circle-spin"></div>
-    </div>
-    <h1 class="heading">ABOUT <span>ME</span></h1>
-    <div class="about-content">
-      <p>Hi I'm<span>M.RAJESHWARAN</span> second-year student pursuing a Bachelor of Technology (B.Tech) degree in the Department of Information Technology, I believe that this scholarship will offer me invaluable support in furthering my academic journey</p>
-	   <ul>
-        <li>HTML</li>
-        <li>PYTHON</li>
-        <li>C++</li>
-      </ul>
-      <div class="btn-box1">
-                <a href="#" class="btn">Read more</a>
-    </div>
-  </div>
-    <!-- Education section design -->
-
-    <!-- Skills section design -->
-
-    <!-- Contact section design -->
-
-    <!-- Footer design -->
-
-    <script src="js/script.js"></script>
+    <h1>Classroom Availability Checker</h1>
+    <form>
+        <label for="classroom">Classroom:</label>
+        <select name="rooms" id="classroom">
+  <option value="701">701</option>
+  <option value="702">702</option>
+  <option value="703">703</option>
+  <option value="704">704</option>
+  <option value="705">705</option>
+</select><br>
+        <label for="day">Day:</label>
+        <select name="day" id="day">
+  <option value="Monday">Monday</option>
+  <option value="Tuesday">Tuesday</option>
+  <option value="Wednesday">Wednesday</option>
+  <option value="Thursday">Thursday</option>
+  <option value="Friday">Friday</option>
+</select><br>
+        <label for="period">Period (1-8):</label>
+        <input type="number" id="period" min="1" max="8" required><br>
+        <button type="button" onclick="checkAvailability()">Check Availability</button>
+    </form>
+    <p id="result"></p>
 </body>
-
 </html>
