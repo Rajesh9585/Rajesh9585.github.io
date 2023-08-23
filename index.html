@@ -1,103 +1,387 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  border: none;
+  outline: none;
+  scroll-behavior: smooth;
+  font-family: 'poppins', sans-serif;
+}
+
+:root {
+  --bg-color: #081b29;
+  --second-bg-color: #112e42;
+  --text-color: #ededed;
+  --main-color: #00abf0;
+}
+
+html {
+  font-size: 62.5%;
+  overflow-x: hidden;
+}
+
+body {
+  background:var(--bg-color);
+  color: var(--text-color);
+}
+
+.header {
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 2rem 9%;
+  background: yellowgreen;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 2.5rem;
+  color: var(--text-color);
+  font-weight: 600;
+}
+
+.navbar a {
+  font-size: 1.7rem;
+  color: var(--text-color);
+  font-weight: 500;
+  margin-left: 3.5rem;
+  transition: .3s;
+}
+
+.navbar a:hover,
+.navbar a.active {
+  color: var(--main-color);
+}
+
+#menu-icon {
+  font-size: 3.6rem;
+  color: var(--text-color);
+  cursor: pointer;
+  display: none;
+}
+
+section {
+  min-height: 100vh;
+  padding: 10rem 9% 2rem;
+}
+
+.home {
+  display: flex;
+  align-items: center;
+  padding: 0 9%;
+  background-image:url("");
+  background-size: cover;
+  background-position: center;
+}
+
+.home-content {
+  max-width: 60rem;
+}
+
+.home-content h1 {
+  font-size: 5.6rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.home-content .text-animate {
+  position: relative;
+  width: 32.8rem;
+}
+
+.home-content .text-animate h3 {
+  font-size: 3.2rem;
+  font-weight: 700;
+  color: transparent;
+  -webkit-text-stroke: .7px var(--main-color);
+}
+
+.home-content p {
+  font-size: 1.6rem;
+  margin: 2rem 0 4rem;
+}
+
+.btn-box {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 34.5rem;
+  height: 5rem;
+}
+
+.btn-box .btn {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 15rem;
+  height: 100%;
+  background: var(--main-color);
+  border: 0.5rem solid var(--main-color);
+  border-radius: .8rem;
+  font-size: 1.8rem;
+  font-weight: 600;
+  letter-spacing: .5rem;
+  color: var(--bg-color);
+  z-index: 1;
+  overflow: hidden;
+  transition: .5s;
+}
+
+.btn-box .btn:nth-child(2) {
+  background: transparent;
+  color: var(--main-color);
+}
+
+.btn-box .btn:nth-child(2):hover {
+  background: var(--bg-color);
+}
+
+.btn-box .btn:nth-child(2)::before {
+  background:#98cc44;
+}
+
+.btn-box .btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background:#98cc44;
+  z-index: -1;
+  transition: .5s;
+}
+
+.btn-box .btn:hover::before {
+  width: 100%;
+}
+
+.home-sci {
+  position: absolute;
+  bottom: 4rem;
+  width: 170px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.home-sci a {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: .2rem solid var(--main-color);
+  border-radius: 50%;
+  font-size: 20px;
+  color: #e4f30bfb;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.home-sci a:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background: var(--main-color);
+  z-index: -1;
+  transition: .5s;
+}
+
+.home-sci a:hover::before {
+  width: 100%;
+}
+
+.about {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
+  background:var(--second-bg-color);
+  padding-bottom: 6rem;
+}
+
+.heading {
+  font-size: 5rem;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+span {
+  color: var(--main-color);
+}
+
+.about-img {
+  position: relative;
+  width: 25rem;
+  height: 25rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.about-img img {
+  width: 90%;
+  border-radius: 50%;
+  border: .2rem solid var(--main-color);
+}
+
+.about-content p {
+  font-size: 2.6rem;
+  margin: 2rem 0 4rem;
+}
+
+.about-img .circle-spin {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(0);
+  width: 100%;
+  height: 120%;
+  border-radius: 50%;
+  border-top: .2rem solid var(--second-bg-color);
+  border-bottom: .2rem solid var(--second-bg-color);
+  border-left: .2rem solid var(--main-color);
+  border-right: .2rem solid var(--main-color);
+}
+
+ul {
+  font-size: 1.6rem;
+  margin: 2rem 0 4rem;
+  align-items: center;
+    }
+
+.btn-box1 {
+  position: relative;
+  display: flex;
+  width: 34.5rem;
+  height: 5rem;
+}
+
+.btn-box1 .btn {
+  position: relative;
+  display: inline-flex;
+  justify-content: space-between;
+  width: 15rem;
+  height: 100%;
+  background: var(--main-color);
+  border: 0.5rem solid var(--main-color);
+  border-radius: .8rem;
+  font-size: 1.8rem;
+  font-weight: 600;
+  letter-spacing: .5rem;
+  color: var(--bg-color);
+  z-index: 1;
+  overflow: hidden;
+  transition: .5s;
+}
+.btn-box1 .btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background:#98cc44;
+  z-index: -1;
+  transition: .5s;
+}
+
+.btn-box1 .btn:hover::before {
+  width: 100%;
+    }
+  </style>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Classroom Availability Checker</title>
-    <script>
-        function checkAvailability() {
-            var classroom = document.getElementById("classroom").value;
-            var day = document.getElementById("day").value;
-            var period = parseInt(document.getElementById("period").value);
+    <title>Complete Responsive Personal Portfolio Website HTML CSS Javascript | Codehal</title>
 
-            var classroom_schedule = {
-                "701": {
-                    "Monday": [1, 2, 3,6,5],
-                    "Tuesday": [2,4,5, 3],
-                    "Wednesday": [7,1,6, 3],
-                    "Thursday": [1, 5,8,3],
-                    "Friday": [2,4 ,7,3,6],
-                    
-                    // Add more days and periods as needed
-                },
-                "702": {
-                    "Monday": [4, 5,8 ,7,6],
-                    "Tuesday": [6,3,4,7],
-                    "Wednesday": [1,7 ,4,3],
-                    "Thursday": [2,1,4 ,8],
-                    "Friday": [5, 1,3,7,8],
-                },
-                "703": {
-                    
-                    "Monday": [3, 2, 6,7],
-                    "Tuesday": [1, 3,8,6,2],
-                    "Wednesday": [5,3,4, 2],
-                    "Thursday": [2,8 ,5,3],
-                    "Friday": [2,7,1,6, 8],
-                },
-                "704": {
-                    "Monday": [1, 5,7,8, 3],
-                    "Tuesday": [4, 1,7,8,6],
-                    "Wednesday": [2, 3,6,4,8],
-                    "Thursday": [5, 3,1,8,6],
-                    "Friday": [2, 3,7,4,1,5],                },
-                "705": {
-                    "Monday": [1, 4, 3,7,5],
-                    "Tuesday": [2, 7,3,1,5],
-                    "Wednesday": [2,1,5, 3],
-                    "Thursday": [2,1,4 ,3],
-                    "Friday": [2, 6,1,3],
-                },
-                // Add more classrooms as needed
-            };
+    <link rel="stylesheet" href="css/style.css">
 
-            if (classroom in classroom_schedule && day in classroom_schedule[classroom]) {
-                var occupied_periods = classroom_schedule[classroom][day];
-                if (!occupied_periods.includes(period)) {
-                    document.getElementById("result").textContent = "The classroom is free during the selected period.";
-                } else {
-                    var alternative_classroom = null;
-                    for (var cls in classroom_schedule) {
-                        if (classroom_schedule[cls][day] && !classroom_schedule[cls][day].includes(period)) {
-                            alternative_classroom = cls;
-                            break;
-                        }
-                    }
-                    if (alternative_classroom) {
-                        document.getElementById("result").textContent = "The classroom is occupied. You can use classroom " + alternative_classroom + " as an alternative.";
-                    } else {
-                        document.getElementById("result").textContent = "The classroom is occupied during the selected period.";
-                    }
-                }
-            } else {
-                document.getElementById("result").textContent = "Classroom information not found.";
-            }
-        }
-    </script>
+    <!-- Boxicons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
+
 <body>
-    <h1>Classroom Availability Checker</h1>
-    <form>
-        <label for="classroom">Classroom:</label>
-        <select name="rooms" id="classroom">
-  <option value="701">701</option>
-  <option value="702">702</option>
-  <option value="703">703</option>
-  <option value="704">704</option>
-  <option value="705">705</option>
-</select><br>
-        <label for="day">Day:</label>
-        <select name="day" id="day">
-  <option value="Monday">Monday</option>
-  <option value="Tuesday">Tuesday</option>
-  <option value="Wednesday">Wednesday</option>
-  <option value="Thursday">Thursday</option>
-  <option value="Friday">Friday</option>
-</select><br>
-        <label for="period">Period (1-8):</label>
-        <input type="number" id="period" min="1" max="8" required><br>
-        <button type="button" onclick="checkAvailability()">Check Availability</button>
-    </form>
-    <p id="result"></p>
+
+    <!-- Header design -->
+    <header class="header">
+        <a href="#" class="logo">Rajesh</a>
+        <div class="bx bx-menu" id="menu-icon"></div>
+        <nav class="navbar">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#education">Education</a>
+            <a href="#contact">Contact</a>
+            <a href="#"><i class='bx bx-search-alt-2'></i>
+			<input id="input" type="search"aria-controls="matches" placeholder="Search....">
+</a>
+        </nav>
+    </header>
+
+    <!-- Home section design -->
+    <section class="home" id="home">
+        <div class="home-content">
+            <h1>Hi, I'm <span>Rajesh</span></h1>
+            <div class="text-animate">
+                <h3>Frontend Developer</h3>
+            </div>
+            <p>Honestly, I possess all the skills and experience that you’re looking for this position and I’m pretty confident that I am the best candidate for it. Being a fast learner, I quickly picked up business knowledge related to my project. On the other hand, I am a self-motivated person and try to exceed my superior’s expectations with high-quality work. It's not just my background in the past projects, but also my people skills, which will be applicable in this position. Lastly, I would like to add that I work well both as an individual contributor and also as a team member. Collectively, all these skills put together make me a complete package for this job.</p>
+            <div class="btn-box">
+                <a href="#" class="btn">Hire me!</a>
+                <a href="#" class="btn">Let's talk</a>
+            </div>
+        </div>
+        <div class="home-sci">
+            <a href="#"><i class='bx bxl-facebook'></i></a>
+            <a href="#"><i class='bx bxl-instagram'></i></a>
+            <a href="#"><i class='bx bxl-linkedin'></i></a>
+        </div>
+    </section>
+
+    <!-- About section design -->
+    <div class="about">
+    <div class="about-img"><image src= "https://a10a927f08a819b9f1c3.cdn6.editmysite.com/uploads/b/a10a927f08a819b9f1c37a3a35479250e8206f2708d7c641eb4b69e8f5370766/IMG_20230303_111130-01-01_1690911175.jpeg?width=800&optimize=medium">
+      <div class="circle-spin"></div>
+    </div>
+    <h1 class="heading">ABOUT <span>ME</span></h1>
+    <div class="about-content">
+      <p>Hi I'm<span>M.RAJESHWARAN</span> second-year student pursuing a Bachelor of Technology (B.Tech) degree in the Department of Information Technology, I believe that this scholarship will offer me invaluable support in furthering my academic journey</p>
+	   <ul>
+        <li>HTML</li>
+        <li>PYTHON</li>
+        <li>C++</li>
+      </ul>
+      <div class="btn-box1">
+                <a href="#" class="btn">Read more</a>
+    </div>
+  </div>
+    <!-- Education section design -->
+
+    <!-- Skills section design -->
+
+    <!-- Contact section design -->
+
+    <!-- Footer design -->
+
+    <script src="js/script.js"></script>
 </body>
-</html>
+
+                                                     </html>
